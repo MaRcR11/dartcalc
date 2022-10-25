@@ -5,7 +5,8 @@ Between 2-170 remaining points in darts you got the possibility to end the game 
 Common players might not play or know to play all the calculated checkouts, they would go for the most easiest ways. 
 This is just an calculating purpose (not intuitive problem).
 ## External
-stackblitz.com/edit/vitejs-vite-n8mru1
+https://stackblitz.com/edit/vitejs-vite-n8mru1
+
 
 
 
