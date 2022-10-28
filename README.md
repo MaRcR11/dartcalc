@@ -6,7 +6,9 @@ Common players might not play or know to play all the calculated checkouts, they
 This is just an calculating purpose (not intuitive problem).
 ## PLot
 ![](./plot.png)
-Total Possibilities: 
+## Remarkable values
+Total possibilities: 82047
+Most possibilities: 56
 ## External
 https://stackblitz.com/edit/vitejs-vite-n8mru1
 
