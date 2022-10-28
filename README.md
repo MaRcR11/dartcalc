@@ -9,7 +9,7 @@ This is just an calculating purpose (not intuitive problem).
 ## Remarkable values
 - `Total possibilities: 82047`
 - `
-Most possibilities of a number: 56`
+Most possibilities of a number (56): 1404`
 
 ## External
 https://stackblitz.com/edit/vitejs-vite-n8mru1
