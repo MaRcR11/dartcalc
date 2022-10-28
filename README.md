@@ -8,7 +8,7 @@ This is just an calculating purpose (not intuitive problem).
 ![](./plot.png)
 ## Remarkable values
 Total possibilities: 82047
-Most possibilities: 56
+most possibilities of a number: 56
 ## External
 https://stackblitz.com/edit/vitejs-vite-n8mru1
 
