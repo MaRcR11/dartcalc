@@ -8,7 +8,7 @@ This is just an calculating purpose (not intuitive problem).
 ![](./plot.png)
 ## Remarkable values
 - `Total possibilities: 82047`
-- `Most possibilities of a number (56): 1404`
+- `Most possibilities of a number (58): 1404`
 - `Lowest possibilities of a number (2, 3, 156, 170): 1`
 - `Bogey numbers; numbers between 2-170 but with no possibility: 159, 162, 163, 165, 166, 168, 169`
 
