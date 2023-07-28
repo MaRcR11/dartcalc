@@ -12,9 +12,5 @@ This is just an calculating purpose (not intuitive problem).
 - `Lowest possibilities of a number (2, 3, 156, 170): 1`
 - `Bogey numbers; numbers between 2-170 but with no possibility: 159, 162, 163, 165, 166, 168, 169`
 
-## External
-https://stackblitz.com/edit/vitejs-vite-n8mru1
-
-
 
 
