@@ -15,26 +15,26 @@ This is just an calculating purpose (not intuitive problem).
 ### 1 darts
 ![](./plot_3.png)
 - `Total possibilities: 20`
-- `Most possibilities of a number (2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 48): 1`
-- `Bogey numbers; numbers between 2-170 but with no possibility: 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 40, 41, 42, 43, 44, 45, 46, 47`
+- `Most possibilities of a number (2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 50): 1`
+- `Bogey numbers; numbers between 2-50 but with no possibility: 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 42, 43, 44, 45, 46, 47, 48, 49`
   
 ### 2 darts
 ![](./plot_4.png)
 - `Total possibilities: 1323`
 - `Most possibilities of a number (40): 36`
 - `Lowest possibilities of a number (2, 3, 93, 96, 97, 101, 104, 107, 110): 1`
-- `Bogey numbers; numbers between 2-170 but with no possibility: 99, 102, 103, 105, 106, 108, 109`
+- `Bogey numbers; numbers between 2-110 but with no possibility: 99, 102, 103, 105, 106, 108, 109`
 
 ### 4 darts
 ![](./plot_1.png)
 - `Total possibilities: 5086935`
 - `Most possibilities of a number (80): 69520`
 - `Lowest possibilities of a number (2, 3, 216, 230): 1`
-- `Bogey numbers; numbers between 2-170 but with no possibility: 219, 222, 223, 225, 226, 228, 229`
+- `Bogey numbers; numbers between 2-230 but with no possibility: 219, 222, 223, 225, 226, 228, 229`
 
 ### 5 darts
 ![](./plot_2.png)
 - `Total possibilities: 315389991`
 - `Most possibilities of a number (102): 3750597`
 - `Lowest possibilities of a number (2, 3, 276, 290): 1`
-- `Bogey numbers; numbers between 2-170 but with no possibility: 279, 282, 283, 285, 286, 288, 289`
+- `Bogey numbers; numbers between 2-290 with no possibility: 279, 282, 283, 285, 286, 288, 289`
