@@ -11,6 +11,10 @@ This is just an calculating purpose (not intuitive problem).
 - `Most possibilities of a number (58): 1404`
 - `Lowest possibilities of a number (2, 3, 156, 170): 1`
 - `Bogey numbers; numbers between 2-170 but with no possibility: 159, 162, 163, 165, 166, 168, 169`
+## Changing the amount of darts
 
+### 4 darts
+![](./plot_1.png)
 
-
+### 5 darts
+![](./plot_2.png)
