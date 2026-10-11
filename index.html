@@ -2,16 +2,130 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dartcalc-vite</title>
+    <meta name="description" content="Every possible double-out checkout in darts, counted and visualized." />
+    <title>dartcalc</title>
   </head>
   <body>
-    <div id="root">
-      <input />
-      <div id="result" />
-    </div>
-    <script type="module" src="/src/main.tsx"></script>
+    <main>
+      <h1>dartcalc</h1>
+      <p class="lead">
+        Every way to check out a score in darts with a double-out. The last dart must hit a double
+        or the bullseye, and the order of the darts matters. Missed darts aren't counted.
+      </p>
+
+      <div class="tabs" id="darts" role="group" aria-label="Number of darts">
+        <button data-d="1">1 dart</button>
+        <button data-d="2">2 darts</button>
+        <button data-d="3">3 darts</button>
+        <button data-d="4">4 darts</button>
+        <button data-d="5">5 darts</button>
+      </div>
+
+      <div class="stats" id="stats"></div>
+
+      <section class="card">
+        <h2>Checkouts per score</h2>
+        <div class="chart"><div id="chart"></div>
+          <div class="tooltip" id="tooltip" hidden></div></div>
+        <div class="legend chart-legend" id="chart-legend"></div>
+        <p class="hint">Bars are colored by the fewest darts needed to finish. Gray dots under the axis mark bogey numbers. Click a bar to list its checkouts.</p>
+      </section>
+
+      <section class="card formula">
+        <h2>The formula behind the chart</h2>
+
+        <h3>The two polynomials</h3>
+        <p>
+          Tag every dart field with a term <code>x</code> raised to its value and add them up.
+          All 62 fields give <var>A</var>(x); the 21 finishing fields (doubles + bull) give <var>F</var>(x):
+        </p>
+        <div class="eq">
+          <span><var>A</var>(x) = x<sup>1</sup> + 2x<sup>2</sup> + 2x<sup>3</sup> + … + x<sup>60</sup></span>
+          <span><var>F</var>(x) = x<sup>2</sup> + x<sup>4</sup> + … + x<sup>40</sup> + x<sup>50</sup></span>
+        </div>
+
+        <h3>Counting one score</h3>
+        <p>
+          The number of ways to check out <em>s</em> with up to <em>n</em> darts is the coefficient of
+          <code>x<sup>s</sup></code> in a single product:
+        </p>
+        <div class="eq">
+          <span><var>F</var>(x) · ( 1 + <var>A</var>(x) + <var>A</var>(x)<sup>2</sup> + … + <var>A</var>(x)<sup>n−1</sup> )</span>
+        </div>
+        <p>
+          Each power of <var>A</var> is one more dart convolved onto the last, which is why the bars
+          pile into a bell.
+        </p>
+
+        <h3>The grand total</h3>
+        <p>
+          Set x = 1 and the whole thing collapses to the grand total:
+          <var>F</var>(1) = 21, <var>A</var>(1) = 62, so there are
+          <code>21 · (62<sup>n</sup> − 1) / 61</code> checkouts in all, which is 82,047 for 3 darts.
+        </p>
+
+        <h3>Bogey numbers</h3>
+        <p>
+          Write <code>max<sub>n</sub> = 60(n−1) + 50</code> for the highest checkout with <var>n</var> darts.
+          Near the top you can only lose points in steps of 3 (triple to triple), 10 (a bull), or an even
+          amount (the finishing double), and 1, 2, 4, 5, 7, 8, 11 are not sums of those. Those steps do not
+          depend on <var>n</var>: an extra dart just adds a T20, lifting <code>max<sub>n</sub></code> by 60
+          and leaving the top untouched. So the <strong>bogey numbers</strong> (coefficient 0) are, for every
+          <code>n ≥ 2</code> out to infinity, exactly <code>max<sub>n</sub> − {1, 2, 4, 5, 7, 8, 11}</code>.
+        </p>
+        <h3>Only one way</h3>
+        <p>
+          The <strong>only-one-way</strong> scores (coefficient 1) are just as fixed: for every
+          <code>n ≥ 3</code> they are exactly <code>{2, 3, max<sub>n</sub> − 14, max<sub>n</sub>}</code>.
+          At the floor 2 = D1 and 3 = S1, D1; at the ceiling
+          <code>max<sub>n</sub></code> = (n−1)×T20 + Bull and <code>max<sub>n</sub> − 14</code> = (n−1)×T20 + D18.
+        </p>
+      </section>
+
+      <section>
+        <h2>Look up a score</h2>
+        <input id="score" type="number" min="2" placeholder="e.g. 170" inputmode="numeric" />
+        <div id="result"></div>
+      </section>
+
+      <section class="card">
+        <div class="board-head">
+          <h2 id="board-title">Board heatmap</h2>
+          <div class="tabs" id="board-mode" role="group" aria-label="Heatmap source">
+            <button data-m="score" aria-pressed="true">This score</button>
+            <button data-m="all">All checkouts</button>
+          </div>
+        </div>
+        <p class="hint" id="board-sub"></p>
+        <div class="board-wrap"><div id="board"></div><div class="tooltip" id="board-tip" hidden></div></div>
+        <div class="legend" id="board-legend"></div>
+      </section>
+
+      <section>
+        <div class="export">
+          <span>Export <span id="export-scope"></span>:</span>
+          <button type="button" id="export-csv">counts CSV</button>
+          <button type="button" id="export-json">counts JSON</button>
+          <button type="button" id="export-checkouts">every checkout CSV</button>
+          <span class="export-note" id="export-note"></span>
+        </div>
+        <details>
+          <summary>Show all values as a table</summary>
+          <div class="table-wrap">
+            <table id="table">
+              <thead><tr><th>Score</th><th>Checkouts</th><th>Fewest darts</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </details>
+      </section>
+
+      <footer>
+        Source on <a href="https://github.com/MaRcR11/dartcalc">GitHub</a>.
+      </footer>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

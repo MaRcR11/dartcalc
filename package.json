@@ -1,6 +1,6 @@
 {
   "homepage": "http://marcr11.github.io/dartcalc",
-  "name": "vite-react-typescript-starter",
+  "name": "dartcalc",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -10,14 +10,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
-  "dependencies": {
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
-  },
   "devDependencies": {
-    "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.3",
-    "@vitejs/plugin-react": "^1.3.2",
     "gh-pages": "^4.0.0",
     "typescript": "^4.6.4",
     "vite": "^2.9.8"
